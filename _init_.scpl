@@ -1,0 +1,52 @@
+-- __init__.scpl - Match Library for SCPL
+-- Pattern matching and destructuring
+
+function: match value pattern
+    if: == pattern 'any'
+        return: true
+    if: == pattern 'number'
+        if: == type: value 'int'
+            return: true
+        if: == type: value 'float'
+            return: true
+        return: false
+    if: == pattern 'string'
+        if: == type: value 'str'
+            return: true
+        return: false
+    if: == pattern 'list'
+        if: == type: value 'list'
+            return: true
+        return: false
+    if: == pattern 'bool'
+        if: == type: value 'bool'
+            return: true
+        return: false
+    if: == pattern 'nil'
+        if: == value null
+            return: true
+        return: false
+    if: == pattern 'positive'
+        if: > value 0
+            return: true
+        return: false
+    if: == pattern 'negative'
+        if: < value 0
+            return: true
+        return: false
+    if: == pattern 'zero'
+        if: == value 0
+            return: true
+        return: false
+    if: == pattern 'even'
+        if: == % value 2 0
+            return: true
+        return: false
+    if: == pattern 'odd'
+        if: != % value 2 0
+            return: true
+        return: false
+    -- Прямое сравнение
+    if: == value pattern
+        return: true
+    return: false
